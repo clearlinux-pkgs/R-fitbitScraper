@@ -4,7 +4,7 @@
 #
 Name     : R-fitbitScraper
 Version  : 0.1.8
-Release  : 13
+Release  : 14
 URL      : https://cran.r-project.org/src/contrib/fitbitScraper_0.1.8.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/fitbitScraper_0.1.8.tar.gz
 Summary  : Scrapes Data from Fitbit
@@ -12,16 +12,14 @@ Group    : Development/Tools
 License  : MIT
 Requires: R-httr
 Requires: R-jsonlite
+Requires: R-stringr
 BuildRequires : R-httr
 BuildRequires : R-jsonlite
+BuildRequires : R-stringr
 BuildRequires : buildreq-R
 
 %description
-### fitbitScraper 0.1.8
-New changes:
-* Added minutesSedentary data to 'get_daily_data'
-* fixed bug in the column names in âget_daily_dataâ for getTimeInHeartRateZonesPerDay
-* if login returns a cookie that is character(0), throw error
+API, but instead uses the API that the web dashboard uses to generate the graphs
 
 %prep
 %setup -q -c -n fitbitScraper
@@ -30,13 +28,13 @@ New changes:
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552900168
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569288340
 
 %install
-export SOURCE_DATE_EPOCH=1552900168
+export SOURCE_DATE_EPOCH=1569288340
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -65,12 +63,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  fitbitScraper || :
+R CMD check --no-manual --no-examples --no-codoc fitbitScraper || :
 
 
 %files
