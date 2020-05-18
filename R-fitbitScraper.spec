@@ -4,7 +4,7 @@
 #
 Name     : R-fitbitScraper
 Version  : 0.1.8
-Release  : 18
+Release  : 19
 URL      : https://cran.r-project.org/src/contrib/fitbitScraper_0.1.8.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/fitbitScraper_0.1.8.tar.gz
 Summary  : Scrapes Data from Fitbit
@@ -17,32 +17,28 @@ BuildRequires : R-httr
 BuildRequires : R-jsonlite
 BuildRequires : R-stringr
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
-### fitbitScraper 0.1.8
-New changes:
-* Added minutesSedentary data to 'get_daily_data'
-* fixed bug in the column names in ‘get_daily_data’ for getTimeInHeartRateZonesPerDay
-* if login returns a cookie that is character(0), throw error
+API, but instead uses the API that the web dashboard uses to generate the graphs
 
 %prep
 %setup -q -c -n fitbitScraper
+cd %{_builddir}/fitbitScraper
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571830082
+export SOURCE_DATE_EPOCH=1589760210
 
 %install
-export SOURCE_DATE_EPOCH=1571830082
+export SOURCE_DATE_EPOCH=1589760210
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
