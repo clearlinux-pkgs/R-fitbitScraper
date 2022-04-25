@@ -4,7 +4,7 @@
 #
 Name     : R-fitbitScraper
 Version  : 0.1.8
-Release  : 33
+Release  : 34
 URL      : https://cran.r-project.org/src/contrib/fitbitScraper_0.1.8.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/fitbitScraper_0.1.8.tar.gz
 Summary  : Scrapes Data from Fitbit
